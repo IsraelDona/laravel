@@ -8,4 +8,16 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+
+
+
+     // Ajoutez ceci pour la production
+    build: {
+        rollupOptions: {
+            output: {
+                assetFileNames: 'assets/[name]-[hash].[ext]',
+            }
+        }
+    }
 });
+
