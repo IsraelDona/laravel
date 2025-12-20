@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             LangueSeeder::class,
-            UtilisateurSeeder::class, // Seeder qui crée les utilisateurs simples
             RegionSeeder::class,
             TypeContenuSeeder::class,
             TypeMediaSeeder::class,
