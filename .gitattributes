@@ -1,10 +1,43 @@
-* text=auto eol=lf
+# Normalize line endings
+* text=auto
 
-*.blade.php diff=html
-*.css diff=css
-*.html diff=html
-*.md diff=markdown
-*.php diff=php
+# Force LF for source files
+*.php text eol=lf
+*.blade.php text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.sh text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.zip binary
+*.pdf binary
+# Normalize line endings
+* text=auto
+
+# Force LF for source files
+*.php text eol=lf
+*.blade.php text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.sh text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.zip binary
+*.pdf binary
 
 /.github export-ignore
 CHANGELOG.md export-ignore

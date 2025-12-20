@@ -16,8 +16,32 @@ class FrontController extends Controller
 
     public function contenus()
     {
-        $contenus = Contenu::latest()->get();
+        $contenus = Contenu::with('medias')->orderBy('created_at', 'desc')->take(5)->get();
         return view('frontend.contenus', compact('contenus'));
+    }
+
+    public function contenuPayForm($id)
+    {
+        $contenu = Contenu::with('medias')->findOrFail($id);
+        return view('frontend.paiement', compact('contenu'));
+    }
+
+    public function contenuPayProcess($id)
+    {
+        // Simulation de paiement : en vrai, intégrer une API paiement
+        return redirect()->route('front.contenu.show', ['id' => $id, 'paid' => 1]);
+    }
+
+    public function contenuShow($id)
+    {
+        $contenu = Contenu::with('medias')->findOrFail($id);
+
+        // Vérification simple que l'utilisateur vient d'avoir payé (paramètre GET 'paid')
+        if (request()->get('paid') != 1) {
+            return redirect()->route('front.contenu.pay', $id)->with('info', 'Veuillez payer pour accéder au contenu complet.');
+        }
+
+        return view('frontend.contenu_show', compact('contenu'));
     }
 
     public function regions()

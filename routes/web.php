@@ -27,6 +27,9 @@ Route::get('/', function () {
 Route::prefix('front')->name('front.')->group(function () {
     Route::get('/accueil', [FrontController::class, 'accueil'])->name('accueil');
     Route::get('/contenus', [FrontController::class, 'contenus'])->name('contenus');
+    Route::get('/contenu/{id}/pay', [FrontController::class, 'contenuPayForm'])->name('contenu.pay');
+    Route::post('/contenu/{id}/pay', [FrontController::class, 'contenuPayProcess'])->name('contenu.pay.process');
+    Route::get('/contenu/{id}', [FrontController::class, 'contenuShow'])->name('contenu.show');
     Route::get('/regions', [FrontController::class, 'regions'])->name('regions');
     Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 });
