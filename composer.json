@@ -67,6 +67,9 @@
         ],
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+        ],
+        "post-install-cmd": [
+            "@php artisan migrate --seed --force"
         ]
     },
     "extra": {
@@ -85,4 +88,7 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true
+
+
+
 }
