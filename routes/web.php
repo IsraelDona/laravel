@@ -107,3 +107,14 @@ Route::middleware(['auth'])->group(function () {
 
 // Routes Breeze (auth.php)
 require __DIR__ . '/auth.php';
+
+// TEMPORARY: endpoint to run migrations + seed on remote when no console is available.
+// SECURITY: set ONE_TIME_KEY in Railway env vars to a strong value before calling.
+Route::get('/_run-migrations', function (\Illuminate\Http\Request $request) {
+    if ($request->header('X-ONE-TIME-KEY') !== env('ONE_TIME_KEY')) {
+        abort(403);
+    }
+    \Artisan::call('migrate', ['--force' => true]);
+    \Artisan::call('db:seed', ['--class' => 'DatabaseSeeder']);
+    return response('migrations+seeds executed', 200);
+});
