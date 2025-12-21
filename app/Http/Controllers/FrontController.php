@@ -50,10 +50,9 @@ class FrontController extends Controller
         return view('frontend.regions', compact('regions'));
     }
 
-     public function contacts()
+    public function contact()
     {
-        $regions = Region::all();
-        return view('frontend.contact', compact('contact'));
+        return view('frontend.contact');
     }
    
 }
