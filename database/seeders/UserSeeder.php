@@ -13,21 +13,21 @@ class UserSeeder extends Seeder
         User::firstOrCreate([
             'name' => 'COMLAN',
             'email' => 'maurices.comlan@gmail.com',
-            'password' => Hash::make('Eneam123'),
+            'password' => \Illuminate\Support\Facades\Hash::make('Eneam123'),
             'role' => 'admin',
         ]);
 
         User::firstOrCreate([
             'name' => 'JERE',
             'email' => 'admin@uac.bj',
-            'password' => Hash::make('admin123'),
+            'password' => \Illuminate\Support\Facades\Hash::make('admin123'),
             'role' => 'admin',
         ]);
 
         User::firstOrCreate([
             'name' => 'jack',
             'email' => 'user@test.com',
-            'password' => Hash::make('password123'),
+            'password' => \Illuminate\Support\Facades\Hash::make('password123'),
             'role' => 'user',
         ]);
     }
