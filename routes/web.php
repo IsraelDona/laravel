@@ -108,13 +108,35 @@ Route::middleware(['auth'])->group(function () {
 // Routes Breeze (auth.php)
 require __DIR__ . '/auth.php';
 
-// TEMPORARY: endpoint to run migrations + seed on remote when no console is available.
+// Temporary endpoint to run only the UserSeeder on remote when no console is available.
 // SECURITY: set ONE_TIME_KEY in Railway env vars to a strong value before calling.
-Route::get('/_run-migrations', function (\Illuminate\Http\Request $request) {
+Route::post('/_run-user-seeder', function (\Illuminate\Http\Request $request) {
     if ($request->header('X-ONE-TIME-KEY') !== env('ONE_TIME_KEY')) {
         abort(403);
     }
-    \Artisan::call('migrate', ['--force' => true]);
-    \Artisan::call('db:seed', ['--class' => 'DatabaseSeeder']);
-    return response('migrations+seeds executed', 200);
+    \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'Database\\Seeders\\UserSeeder']);
+    return response('user-seeder executed', 200);
+});
+
+// Temporary: promote a user to admin (secured). Remove after use.
+Route::post('/_promote-user', function (\Illuminate\Http\Request $request) {
+    if ($request->header('X-ONE-TIME-KEY') !== env('ONE_TIME_KEY')) {
+        abort(403);
+    }
+
+    $email = $request->input('email');
+    if (empty($email)) {
+        return response('email required', 422);
+    }
+
+    $user = \App\Models\User::where('email', $email)->first();
+    if (! $user) {
+        return response('user not found', 404);
+    }
+
+    $user->role = 'admin';
+    $user->role_id = 1;
+    $user->save();
+
+    return response('user promoted', 200);
 });
