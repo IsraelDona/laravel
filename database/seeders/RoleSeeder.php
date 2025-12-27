@@ -7,19 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 class RoleSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-         // Désactiver les contraintes
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-
-        // Vider la table proprement
-        DB::table('roles')->truncate();
-
-        // Réactiver les contraintes
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        // Optionnel : vider la table proprement (compatible PostgreSQL)
+        DB::table('roles')->delete();
 
         $roles = [
             ['nom_role' => 'Admin'],
@@ -35,6 +26,5 @@ class RoleSeeder extends Seeder
                 'updated_at' => now(),
             ]);
         }
-        $this->command->info('Rôles insérés avec succès.');
     }
 }
