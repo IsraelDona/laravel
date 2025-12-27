@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
             TypeMediaSeeder::class,
             ContenuSeeder::class,
             MediaSeeder::class,
-           RoleSeeder::class,
            CommentaireSeeder::class,
            UtilisateurSeeder::class,
         ]);
