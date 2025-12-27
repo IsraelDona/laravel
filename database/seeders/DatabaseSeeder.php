@@ -16,15 +16,17 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RoleSeeder::class,
-            UserSeeder::class, 
-            LangueSeeder::class,
-            RegionSeeder::class,
-            TypeContenuSeeder::class,
-            TypeMediaSeeder::class,
-            ContenuSeeder::class,
-            MediaSeeder::class,
-           CommentaireSeeder::class,
-           UtilisateurSeeder::class,
+        LangueSeeder::class,
+        RegionSeeder::class,
+        TypeContenuSeeder::class,
+        TypeMediaSeeder::class,
+
+        UserSeeder::class,
+        UtilisateurSeeder::class,
+
+        ContenuSeeder::class,
+        MediaSeeder::class,
+        CommentaireSeeder::class,
         ]);
     }
 }

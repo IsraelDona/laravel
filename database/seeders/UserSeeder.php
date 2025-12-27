@@ -8,27 +8,33 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
-        User::firstOrCreate([
-            'name' => 'COMLAN',
-            'email' => 'maurices.comlan@gmail.com',
-            'password' => \Illuminate\Support\Facades\Hash::make('Eneam123'),
-            'role' => 'admin',
-        ]);
+        User::updateOrCreate(
+            ['email' => 'maurices.comlan@gmail.com'], // clé unique
+            [
+                'name' => 'COMLAN',
+                'password' => Hash::make('Eneam123'),
+                'role' => 'admin',
+            ]
+        );
 
-        User::firstOrCreate([
-            'name' => 'JERE',
-            'email' => 'admin@uac.bj',
-            'password' => \Illuminate\Support\Facades\Hash::make('admin123'),
-            'role' => 'admin',
-        ]);
+        User::updateOrCreate(
+            ['email' => 'admin@uac.bj'],
+            [
+                'name' => 'JERE',
+                'password' => Hash::make('admin123'),
+                'role' => 'admin',
+            ]
+        );
 
-        User::firstOrCreate([
-            'name' => 'jack',
-            'email' => 'user@test.com',
-            'password' => \Illuminate\Support\Facades\Hash::make('password123'),
-            'role' => 'user',
-        ]);
+        User::updateOrCreate(
+            ['email' => 'user@test.com'],
+            [
+                'name' => 'jack',
+                'password' => Hash::make('password123'),
+                'role' => 'user',
+            ]
+        );
     }
 }
