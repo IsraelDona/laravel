@@ -4,37 +4,47 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Contenu;
+use App\Models\Region;
+use App\Models\TypeContenu;
+use App\Models\Langue;
+use App\Models\User;
 
 class ContenuSeeder extends Seeder
 {
     public function run(): void
     {
-        $contenus = [
+        $user = User::first();
+        $langue = Langue::where('code_langue', 'fr')->first();
+        $type = TypeContenu::where('nom', 'Article')->first();
+        $region1 = Region::where('nom', 'Atlantique')->first();
+        $region2 = Region::where('nom', 'Borgou')->first();
+
+        if (!$user || !$langue || !$type || !$region1 || !$region2) {
+            return;
+        }
+
+        Contenu::updateOrCreate(
+            ['titre' => 'Culture Vodoun'],
             [
-                'titre' => 'Culture Vodoun',
                 'description' => 'Présentation des rites vodoun.',
                 'contenu_html' => '<p>Texte example</p>',
-                'region_id' => 1,
-                'type_contenu_id' => 1,
-                'langue_id' => 1,
-                'user_id' => 1
-            ],
+                'region_id' => $region1->id,
+                'type_contenu_id' => $type->id,
+                'langue_id' => $langue->id,
+                'user_id' => $user->id,
+            ]
+        );
+
+        Contenu::updateOrCreate(
+            ['titre' => 'Danse Zangbéto'],
             [
-                'titre' => 'Danse Zangbéto',
                 'description' => 'Description de la danse.',
                 'contenu_html' => '<p>Description ici</p>',
-                'region_id' => 2,
-                'type_contenu_id' => 1,
-                'langue_id' => 1,
-                'user_id' => 1
-            ],
-        ];
-
-        foreach ($contenus as $c) {
-            Contenu::updateOrCreate(
-                ['titre' => $c['titre']],
-                $c
-            );
-        }
+                'region_id' => $region2->id,
+                'type_contenu_id' => $type->id,
+                'langue_id' => $langue->id,
+                'user_id' => $user->id,
+            ]
+        );
     }
 }

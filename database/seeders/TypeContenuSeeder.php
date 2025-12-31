@@ -12,7 +12,7 @@ class TypeContenuSeeder extends Seeder
         $data = [
             ['nom' => 'Article', 'description' => 'Texte long'],
             ['nom' => 'Vidéo', 'description' => 'Contenu vidéo'],
-            ['nom' => 'Audio', 'description' => 'Enregistrement audio']
+            ['nom' => 'Audio', 'description' => 'Enregistrement audio'],
         ];
 
         foreach ($data as $item) {
