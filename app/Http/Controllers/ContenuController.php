@@ -34,7 +34,7 @@ class ContenuController extends Controller
             'contenu_html' => 'nullable',
             'region_id' => 'required|exists:regions,id',
             'type_contenu_id' => 'required|exists:type_contenus,id',
-            'langue_id' => 'required|exists:langues,id_langue'
+            'langue_id' => 'required|exists:langues,id'
         ]);
 
         Contenu::create([
