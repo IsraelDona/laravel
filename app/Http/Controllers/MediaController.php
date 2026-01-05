@@ -28,7 +28,7 @@ class MediaController extends Controller
         $request->validate([
             'contenu_id' => 'required',
             'type_media_id' => 'required',
-            'chemin' => 'required'
+            'fichier' => 'required'
         ]);
 
         Media::create($request->all());
@@ -55,7 +55,7 @@ class MediaController extends Controller
         $request->validate([
             'contenu_id' => 'required|exists:contenus,id',
             'type_media_id' => 'required|exists:type_medias,id',
-            'chemin' => 'required'
+            'fichier' => 'required'
         ]);
 
         $media->update($request->all());

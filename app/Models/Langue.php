@@ -31,7 +31,7 @@ class Langue extends Model
      */
     public function contenus():HasMany
     {
-        return $this-> hasMany(Contenu::class , 'id_langue');
+        return $this-> hasMany(Contenu::class , 'langue_id');
     }
     
     /**

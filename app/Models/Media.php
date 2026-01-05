@@ -11,7 +11,7 @@ class Media extends Model
     protected $fillable = [
         'contenu_id',
         'type_media_id',
-        'chemin',
+        'fichier',
     ];
    
     public function typeMedia()

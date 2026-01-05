@@ -9,6 +9,6 @@ class Commentaire extends Model
     protected $fillable = [
         'contenu_id',
         'user_id',
-        'texte'
+        'message'
     ];
 }

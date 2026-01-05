@@ -12,15 +12,16 @@ class CommentaireController extends Controller
     public function store(Request $request, $contenu_id)
     {
         $request->validate([
-            'texte' => 'required|string'
+            'message' => 'required|string'
         ]);
 
         Commentaire::create([
             'contenu_id' => $contenu_id,
             'user_id' => Auth::id(),
-            'texte' => $request->texte
+            'message' => $request->message
         ]);
 
         return back()->with('success', 'Commentaire ajouté');
     }
 }
+

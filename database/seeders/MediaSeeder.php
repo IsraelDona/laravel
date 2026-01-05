@@ -19,7 +19,7 @@ class MediaSeeder extends Seeder
 
         if ($image && $vodoun) {
             Media::updateOrCreate(
-                ['chemin' => 'images/vodoun.jpg'],
+                ['fichier' => 'images/vodoun.jpg'],
                 [
                     'contenu_id' => $vodoun->id,
                     'type_media_id' => $image->id,
@@ -29,7 +29,7 @@ class MediaSeeder extends Seeder
 
         if ($video && $zangbeto) {
             Media::updateOrCreate(
-                ['chemin' => 'videos/zangbeto.mp4'],
+                ['fichier' => 'videos/zangbeto.mp4'],
                 [
                     'contenu_id' => $zangbeto->id,
                     'type_media_id' => $video->id,

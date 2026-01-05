@@ -21,8 +21,8 @@ class Utilisateur extends Authenticatable
         'date_inscription',
         'mot_de_passe',
         'photo',
-        'role_id',
-        'langue_id',
+        'id_role',
+        'id_langue',
     ];
 
     protected $hidden = [
@@ -48,12 +48,12 @@ class Utilisateur extends Authenticatable
     // Relations
     public function role(): BelongsTo
     {
-        return $this->belongsTo(Role::class, 'role_id', 'id');
+        return $this->belongsTo(Role::class, 'id_role', 'id');
     }
 
     public function langue(): BelongsTo
     {
-        return $this->belongsTo(Langue::class, 'langue_id', 'id');
+        return $this->belongsTo(Langue::class, 'id_langue', 'id');
     }
 
     public function contenusAuteur(): HasMany
